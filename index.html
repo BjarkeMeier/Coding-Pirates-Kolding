@@ -1,0 +1,115 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <style>
+	  pre { border: solid 1px black; width: 500px; }
+	  
+	  body {
+		  background: white; /* For browsers that do not support gradients */
+		  background: -webkit-linear-gradient(left, white , blue); /* For Safari 5.1 to 6.0 */
+		  background: -o-linear-gradient(right, white, blue); /* For Opera 11.1 to 12.0 */
+		  background: -moz-linear-gradient(right, white, blue); /* For Firefox 3.6 to 15 */
+		  background: linear-gradient(to right, white , darkblue); /* Standard syntax */
+		}
+	</style>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+	</head>
+<body>
+<h1>Coding Pirates Kolding</h1>
+
+<p>Minecraft workshop af Bjarke Meier med materiale venligst udlånt af Christian Riis.</p>
+
+<p>Det er en forudsætning, at du har en Minecraft klient og en Minecraft konto. Når du starter din Minecraft klient skal du vælge at køre version 1.9 (ikke 1.9.2 eller noget som helst andet). Det er den version serveren kører.</p>
+
+<ol>
+<li>
+<a href="https://www.dropbox.com/s/m67xvavq4b4ri47/01%20codingpirates_workshop_fixed.zip?dl=0">Server</a> - Download, unzip og kør startscript. På mac kør evt. kommandoen "chmod a+x FILENAME" for at gøre scriptet eksekverbart.
+</li>
+<li>
+<a href="https://www.dropbox.com/s/ywb2momi4i9rho2/02%20byg_med_droner_minecraft_workshop.pptx?dl=0">Lektion 1</a> - Leg med det og slut af med at lave en kommando, der fx bygger en trappe.
+</li>
+<li>
+
+<a href="https://www.dropbox.com/s/e2mtj6nv4sx5f3a/03%20plugins_scriptcraft_minecraft_workshop.pptx?dl=0">Lektion 2</a> - Leg med det og programmer din egen kommando, der fx bygger en trappe.
+</li>
+</ol>
+
+
+<h2>Lær mere:</h2>
+
+<ol>
+  <li><a href="http://scriptcraftjs.org/">www.scriptcraftjs.org</a> - Her er masser af god dokumentation og vejledninger (på engelsk)</li>
+  <li><a href="http://www.w3schools.com">www.w3schools.com</a> - Læs om javascript, men spring alt om HTML over (på engelsk)</li>
+  <li>Events: Scriptcraftjs.org duer ikke til at se info om events. Se i stedet <a href="https://github.com/Bukkit/Bukkit/tree/master/src/main/java/org/bukkit/event">her</a>.</li>
+</ol>
+
+<h2>Kommandoer</h2>
+
+<p>Eksempel på simpel kommando, der laver en blok.</p>
+<pre>
+function block() {
+  this.box0(blocks.stone, 1, 1, 1);
+}
+Drone.extend(block);
+</pre>
+
+<p>Eksempel på simpel kommando, der laver en blok. Kan sættes sammen med andre kommandoer som i fx <code>/js block().up(1).right(1).block()</code></p>
+<pre>
+function block(){
+  this.box0(blocks.stone, 1, 1, 1);
+  return this;
+}
+Drone.extend(block);
+</pre>
+
+<p>Eller det samme på en anden måde...</p>
+<pre>
+function block(){
+  var drone = this;
+  drone.box0(blocks.stone, 1, 1, 1);
+  return drone;
+}
+Drone.extend(block);
+</pre>
+
+<p>Parameter og for-loop (for-løkke)</p>
+<pre>
+function trappe(hoejde) {
+  // Hej med jer - dette er en kommentar
+  for(var i = 0; i < hoejde; i = i + 1) {
+    this.box(blocks.diamond, 1, 1, 1).right(1).up(1);
+  }
+}
+Drone.extend(trappe);
+</pre>
+
+<p>Sjov med events</p>
+<pre>
+events.blockBreak(function(event){
+  echo( event.player, 'Hey - der var en gris i blokken!'); 
+  spawn('PIG', event.block.location);
+});
+</pre>
+
+
+<h2>3D print med Printcraft</h2>
+
+<ol>
+	<li>Download <a href="CodingPirates_Printcraft.zip">denne server</a>. Unzip den og start den med et af de start_xx scripts du finder i den udpakkede mappe.</li>
+	<li>Lav en kommando i Scriptcraft eller kopier en af dem du lavede i Scriptcraft øvelserne til denne server.</li>
+	<li>Brug kommandoen til at bygge noget i en af de markerede firkanter</li>
+	<li>Stil dig inde i firkantet og eksporter det du byggede med Minecraft kommandoen <code>/print</code>.</li>
+	<li>Download den dannede print-fil og få Jens til at hjælpe dig med at print den :-)</li>
+</ol>
+
+</body>
+</html>
